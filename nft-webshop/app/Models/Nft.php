@@ -17,6 +17,9 @@ class Nft extends Model
         'price',
         'crypto_currency',
         'nft_collection_id',
-        'user_kupuje_id',
     ];
+
+    public function nftCollection() {
+        return $this->belongsTo(NftCollection::class);
+    }
 }

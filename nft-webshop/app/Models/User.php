@@ -42,4 +42,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function nftijeviKojiSeKupuju() {
+        return $this->hasMany(NftCollection::class, 'user_kupuje_id', 'id');
+    }
+
+    public function nftijeviKojiSeProdaju() {
+        return $this->hasMany(NftCollection::class, 'user_prodaje_id', 'id');
+    }
 }

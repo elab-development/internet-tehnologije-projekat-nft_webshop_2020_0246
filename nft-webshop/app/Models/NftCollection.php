@@ -19,4 +19,16 @@ class NftCollection extends Model
         'user_prodaje_id',
         'user_kupuje_id',
     ];
+
+    public function userKojiKupuje() {
+        return $this->belongsTo(User::class, 'user_kupuje_id');
+    }
+
+    public function userKojiProdaje() {
+        return $this->belongsTo(User::class, 'user_prodaje_id');
+    }
+
+    public function nfts() {
+        return $this->hasMany(Nft::class);
+    }
 }
