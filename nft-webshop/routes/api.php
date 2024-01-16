@@ -8,6 +8,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\NftController;
 use App\Http\Controllers\NftCollectionController;
 
+use App\Http\Controllers\SearchController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,6 +36,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::patch('/nft_collections/{id}', [NftCollectionController::class,'updatePrice']);
     Route::delete('/nft_collections/{id}', [NftCollectionController::class,'destroy']);
     Route::post('/nft_collections/kupi/{id}', [NftCollectionController::class,'kupiNftKolekciju']);
+    Route::get('/nft_collections/searchByCryptoCurrency',[SearchController::class,'searchCryptoCurrency']);
 
     Route::post('/logout', [AuthController::class, 'logout']); 
 });   
