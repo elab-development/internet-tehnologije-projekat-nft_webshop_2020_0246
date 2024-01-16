@@ -14,8 +14,6 @@ class Nft extends Model
     protected $fillable = [
         'name',
         'description', 
-        'price',
-        'crypto_currency',
         'nft_collection_id',
     ];
 
