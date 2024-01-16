@@ -4,6 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\NftController;
+use App\Http\Controllers\NftCollectionController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,3 +22,18 @@ use App\Http\Controllers\AuthController;
 //rute kojima svako moze da pristupi
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/login', [AuthController::class, 'login']);
+
+Route::resource('users', UserController::class, ['only' => ['index', 'show']]);
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    Route::post('/nfts', [NftController::class,'store']);
+
+    Route::post('/nft_collections', [NftCollectionController::class,'store']);
+    Route::put('/nft_collections/{id}', [NftCollectionController::class,'update']);
+    Route::patch('/nft_collections/{id}', [NftCollectionController::class,'updatePrice']);
+    Route::delete('/nft_collections/{id}', [NftCollectionController::class,'destroy']);
+    Route::post('/nft_collections/kupi/{id}', [NftCollectionController::class,'kupiNftKolekciju']);
+
+    Route::post('/logout', [AuthController::class, 'logout']); 
+});   

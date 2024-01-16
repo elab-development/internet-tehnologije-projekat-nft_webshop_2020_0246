@@ -18,6 +18,7 @@ class NftResource extends JsonResource
             'id' => $this->resource->id,
             'name' => $this->resource->name,
             'description' => $this->resource->description,
+            'imageUrl' => $this->resource->imageUrl,
             'nft_collection_id' => $this->resource->nft_collection_id,
         ];
     }

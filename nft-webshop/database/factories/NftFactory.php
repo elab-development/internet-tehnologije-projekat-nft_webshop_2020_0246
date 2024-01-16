@@ -33,6 +33,7 @@ class NftFactory extends Factory
         return [
             'name' => $this->faker->randomElement($colorNames).' '.$this->faker->randomElement($animals), 
             'description' => $this->faker->sentence(),
+            'imageUrl' => $this->faker->imageUrl(),
             'nft_collection_id' => NftCollection::factory(),
         ];
     }

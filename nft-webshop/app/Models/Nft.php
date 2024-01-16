@@ -15,6 +15,7 @@ class Nft extends Model
         'name',
         'description', 
         'nft_collection_id',
+        'imageUrl',
     ];
 
     public function nftCollection() {
