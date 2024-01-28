@@ -1,0 +1,63 @@
+.home {
+    color: #E9E9E9;
+    padding: 30px;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://wallpapercosmos.com/w/full/1/b/f/103124-3840x2160-desktop-4k-nft-wallpaper-photo.jpg');
+    background-repeat: repeat;
+    background-size: cover;
+    height: 700px;
+  }
+  .homeDiv {
+    width: 60%;
+    margin-top: 10px;
+    align-items: center;
+    color: #E9E9E9;
+    padding: 40px;
+    padding-top: 10px;
+    background-color: #4c4b61;
+    border-radius: 10px;
+    opacity: 80%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); 
+    transition: box-shadow 0.3s ease-in-out; 
+    transition: scale 0.3s ease-in-out; 
+}
+
+.homeDiv:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1); 
+    scale: 1.1;
+}
+
+.home h2 {
+    color: #E9E9E9;
+    font-weight: bold;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    background-color: #706F8E;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out; 
+}
+
+.home h2:hover {
+    transform: scale(1.1); 
+}
+
+.home li:hover {
+    color: black;
+    transition: color 0.3s ease-in-out; 
+}
+
+.home a {
+    color: #706F8E;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out; 
+}
+
+.home a:hover {
+    color: #ADA9BA;
+}
+  
