@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaInfoCircle } from "react-icons/fa";
 import { LiaImages } from "react-icons/lia";
 import { IoHome } from "react-icons/io5";
+import { FaRegMoneyBillAlt } from "react-icons/fa";
 
 function NavBar({ loggedInUser, handleLogout, search }) {
 
@@ -31,6 +32,9 @@ function NavBar({ loggedInUser, handleLogout, search }) {
                 </li>
                 <li className="nav__item">
                   <Link to='/about'>About <FaInfoCircle/> </Link>
+                </li>
+                <li className="nav__item">
+                  <Link to='/kriptovalute'>Kriptovalute <FaRegMoneyBillAlt />  </Link>
                 </li>
                 <li className="nav__item">
                   {loggedInUser}{' '}

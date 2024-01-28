@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Home from './components/Home';
 import NavBar from './components/NavBar';
+import Kriptovalute from './components/Kriptovalute';
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState(null);
@@ -36,6 +37,10 @@ function App() {
           <Route
             path="/home"
             element={loggedInUser ? <Home/> : <Navigate to="/" />}
+          />
+           <Route
+            path="/kriptovalute"
+            element={loggedInUser ? <Kriptovalute/> : <Navigate to="/" />}
           />
          
         </Routes>
