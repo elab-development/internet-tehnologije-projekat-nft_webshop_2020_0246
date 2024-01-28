@@ -45,7 +45,7 @@ function App() {
           />
            <Route 
             path="/nfts" 
-            element={<Nfts searchCriteria={searchCriteria} />} 
+            element={loggedInUser ? <Nfts searchCriteria={searchCriteria}/> : <Navigate to="/" />} 
           />
          
         </Routes>

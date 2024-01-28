@@ -7,7 +7,7 @@ import { FaRegMoneyBillAlt } from "react-icons/fa";
 
 function NavBar({ loggedInUser, handleLogout, search }) {
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleLogoutClick = () => {
     handleLogout();
