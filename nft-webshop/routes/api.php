@@ -27,6 +27,8 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::resource('users', UserController::class, ['only' => ['index', 'show']]);
 
+Route::get('/nfts', [NftController::class, 'index']);
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('/nfts', [NftController::class,'store']);

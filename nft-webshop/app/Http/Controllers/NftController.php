@@ -16,6 +16,13 @@ use Illuminate\Support\Facades\Storage;
 
 class NftController extends Controller
 {
+
+    public function index()
+    {
+        $nfts = Nft::all();
+        return NftResource::collection($nfts);
+    }
+
     public function store(Request $request)
     {
 
