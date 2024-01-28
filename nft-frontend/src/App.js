@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Home from './components/Home';
 import NavBar from './components/NavBar';
 import Kriptovalute from './components/Kriptovalute';
+import Nfts from './components/Nfts';
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState(null);
@@ -21,8 +22,8 @@ function App() {
 
   const [searchCriteria,setSearchCriteria]=useState("");
 
-  function search(criteria){
-    setSearchCriteria(criteria);
+  function search(searchCriteria){
+    setSearchCriteria(searchCriteria);
   }
 
   return (
@@ -41,6 +42,10 @@ function App() {
            <Route
             path="/kriptovalute"
             element={loggedInUser ? <Kriptovalute/> : <Navigate to="/" />}
+          />
+           <Route 
+            path="/nfts" 
+            element={<Nfts searchCriteria={searchCriteria} />} 
           />
          
         </Routes>
