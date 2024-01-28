@@ -3,6 +3,7 @@ import LoginPage from './components/LoginPage';
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Home from './components/Home';
+import NavBar from './components/NavBar';
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState(null);
@@ -11,9 +12,22 @@ function App() {
     setLoggedInUser(username);
   };
 
+  const handleLogout = () => {
+    setLoggedInUser(null);
+    return <Navigate to="/" />;
+  };
+
+
+  const [searchCriteria,setSearchCriteria]=useState("");
+
+  function search(criteria){
+    setSearchCriteria(criteria);
+  }
+
   return (
     <div className="App">
       <BrowserRouter>  
+      {loggedInUser && <NavBar  search={search} loggedInUser={loggedInUser} handleLogout={handleLogout} />}
         <Routes>
           <Route
             path="/"
@@ -21,7 +35,7 @@ function App() {
           />
           <Route
             path="/home"
-            element={<Home/>}
+            element={loggedInUser ? <Home/> : <Navigate to="/" />}
           />
          
         </Routes>
