@@ -80,7 +80,7 @@ const NavBar = () => {
           <div className={Style.navbar_container_left_box_input}>
             <div className={Style.navbar_container_left_box_input_box}>
               <input type="text" placeholder='Pretrazi' />
-              <BsSearch onClick={()=>{}} className={Style.search_con}/>
+              <BsSearch onClick={()=>{}} className={Style.search_icon}/>
             </div>
           </div>
         </div>
@@ -115,7 +115,7 @@ const NavBar = () => {
 
           {/*//NAPRAVI DUGNE*/}
           <div className={Style.navbar_container_right_button}>
-            <Button btnText='Kreiraj'/>
+            <Button btnText='Kreiraj' handleClick={()=>{}}/>
           </div>
           {/*//PROFIL*/}
           <div className={Style.navbar_container_right_profile_box}>
