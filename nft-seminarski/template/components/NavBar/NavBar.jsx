@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 
 import Style from './NavBar.module.css'
-import { Discover, HelpCenter, Notification, Profile } from './index';
+import { Discover, HelpCenter, Notification, Profile, Sidebar } from './index';
 
-import {Sidebar} from './index'
+
 import {Button} from '../componentindex'
 import images from '../../img'
 
@@ -25,12 +25,12 @@ const NavBar = () => {
 
   const openMenu = (e)=>{
     const btnText = e.target.innerText;
-    if(btnText=="Discover"){
+    if(btnText=="Navigacija"){
       setDiscover(true);
       setHelp(false);
       setNotification(false);
       setProfile(false);
-    }else if(btnText=="Help Center"){
+    }else if(btnText=="Pomoć"){
       setDiscover(false);
       setHelp(true);
       setNotification(false);
@@ -66,6 +66,14 @@ const NavBar = () => {
     }
   }
 
+  const openSideBar = () => {
+    if (!openSideMenu) {
+      setOpenSideMenu(true);
+    } else {
+      setOpenSideMenu(false);
+    }
+  };
+
   return (
     <div className={Style.navbar}>
       <div className={Style.navbar_container}>
@@ -79,7 +87,7 @@ const NavBar = () => {
           </div>
           <div className={Style.navbar_container_left_box_input}>
             <div className={Style.navbar_container_left_box_input_box}>
-              <input type="text" placeholder='Pretrazi' />
+              <input type="text" placeholder='Pretraži' />
               <BsSearch onClick={()=>{}} className={Style.search_icon}/>
             </div>
           </div>
@@ -89,7 +97,7 @@ const NavBar = () => {
         <div className={Style.navbar_container_right}>
           <div className={Style.navbar_container_right_discover}>
            {/*discover*/ }
-            <p onClick={(e)=> openMenu(e)}>Discover</p>
+            <p onClick={(e)=> openMenu(e)}>Navigacija</p>
             {discover && (
               <div className={Style.navbar_container_right_discover_box}>
               <Discover />
@@ -97,7 +105,7 @@ const NavBar = () => {
             )}
           </div>
           <div className={Style.navbar_container_right_help}>
-            <p onClick={(e)=>openMenu(e)}>Help Center</p>
+            <p onClick={(e)=>openMenu(e)}>Pomoć</p>
             {help && (
               <div className={Style.navbar_container_right_help_box}>
                 <HelpCenter />
@@ -120,7 +128,7 @@ const NavBar = () => {
           {/*//PROFIL*/}
           <div className={Style.navbar_container_right_profile_box}>
             <div className={Style.navbar_container_right_profile}>
-              <Image src={images.user1} alt="Profil" width={40} height={40} onClick={()=>openProfile()} className={Style.navbar_container_right_profile}
+              <Image src={images.user1} alt="Moj profil" width={40} height={40} onClick={()=>openProfile()} className={Style.navbar_container_right_profile}
               />
 
             {profile && <Profile/>}  
@@ -130,10 +138,23 @@ const NavBar = () => {
 
           {/*Menu button */}
 
+          <div className={Style.navbar_container_right_menuBtn}>
+            <CgMenuRight
+              className={Style.menuIcon}
+              onClick={() => openSideBar()}
+            />
+          </div>
         </div>
       </div>
+
+      {/* SIDBAR CPMPONE/NT */}
+      {openSideMenu && (
+        <div className={Style.sideBar}>
+          <Sidebar setOpenSideMenu={setOpenSideMenu} />
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default NavBar
