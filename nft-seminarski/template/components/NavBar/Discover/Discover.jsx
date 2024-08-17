@@ -13,11 +13,11 @@ const Discover = () => {
     },
     {
       name: "Pretrazi",
-      link: "search"
+      link: "searchPage"
     },
     {
       name: "Profil autora",
-      link: "profil-autora"
+      link: "author"
     },
     {
       name: "NFT detalji",

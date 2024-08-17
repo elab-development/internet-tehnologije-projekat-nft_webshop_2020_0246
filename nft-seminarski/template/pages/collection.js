@@ -18,7 +18,7 @@ const collectionArray = [
 
   return (
     <div className={Style.collection}>
-      {/*<Banner bannerImage={images.creatorbackground1}/>*/}
+      <Banner bannerImage={images.creatorbackground1}/>
       <CollectionProfile/>
       <Filter/>
       <NFTCardTwo NFTData={collectionArray}/>

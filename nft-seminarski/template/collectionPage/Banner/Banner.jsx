@@ -12,6 +12,8 @@ const Banner = ({bannerImage}) => {
           src={bannerImage}
           objectFit="cover"
           alt="background"
+          width={1500}
+          height={300}
           
         />
       </div>
