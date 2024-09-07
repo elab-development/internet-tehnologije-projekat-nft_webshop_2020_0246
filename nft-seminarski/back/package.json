@@ -1,0 +1,25 @@
+{
+  "name": "nftback",
+  "version": "1.0.0",
+  "description": "bekend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "djole/vanja",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.8.1",
+    "mongoose": "^5.5.2",
+    "morgan": "^1.10.0",
+    "slugify": "^1.6.6",
+    "validator": "^13.12.0"
+  },
+  "devDependencies": {
+    "@types/mongoose": "^5.11.96"
+  }
+}
