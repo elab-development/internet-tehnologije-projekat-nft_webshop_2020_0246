@@ -18,6 +18,11 @@ const userSchema = new mongoose.Schema(
         photo:{
             type: String,
         },
+        role:{
+            type: String,
+            enum: ["user","creator","admin","guide"],
+            default: "user"
+        },
         password:{
             type: String,
             required: [true, "Morate uneti lozinku"],
@@ -30,11 +35,14 @@ const userSchema = new mongoose.Schema(
             required: [true,"Molimo vas potvrdite lozinku"],
             validate:{
                 validator: function(el){
-                    return el == this.password
+                    return el === this.password
                 },
                 message: "Lozinke nisu iste"
             }
-        }
+        },
+        passwordChangedAt: Date,
+        
+        
     }
 );
 
@@ -57,6 +65,22 @@ userSchema.methods.correctPassword = async function(
     return await bcrypt.compare(candidatePassword,userPassword);
 }
 
+
+userSchema.methods.changedPasswordAfter = function (JWTTimestamp){
+    if(this.passwordChangedAt){
+        const changedTimeStamp = parseInt(this.passwordChangedAt.getTime()/1000,10);
+        return JWTTimestamp<changedTimeStamp;
+        //console.log(changedTimeStamp,JWTTimestamp);
+    }
+    //po difoltu false
+    return false;
+}
+
+
+
+
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
+
+
