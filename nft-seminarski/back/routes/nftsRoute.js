@@ -1,12 +1,5 @@
 const express = require("express");
 const nftControllers = require("./../controllers/nftControllers");
-// const {
-//   getAllNfts,
-//   createNFT,
-//   getSingleNFT,
-//   updateNFT,
-//   deleteNFT,
-// } = require("./../controllers/nftControllers");
 
 const router = express.Router();
 // router.param("id", nftControllers.checkId);

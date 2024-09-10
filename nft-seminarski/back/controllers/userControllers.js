@@ -1,9 +1,14 @@
 //------USERS
-exports.getAllUsers = (req, res) => {
-    res.status(500).json({
-      status: "error",
-      message: "Internal server error",
-    });
+const User = require("./../models/userModel");
+const APIFeatures = require("./../Utils/apiFeatures");
+//cathcAsync
+//appError
+
+exports.getAllUsers = async(req, res) => {
+  res.status(500).json({
+    status: "error",
+    message: "Internal server error",
+  });
   };
   
   exports.createUser = (req, res) => {
