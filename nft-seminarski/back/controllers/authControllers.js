@@ -1,10 +1,18 @@
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
-//catch async i treba da wrapujem catch asyncom sve ovo
+const catchAsync = require("../Utils/catchAsync");
+const AppError = require("../Utils/appError");
+
+//create token
+const signToken = id => {
+    return jwt.sign({id},process.env.JWT_SECRET,{
+        expiresIn:process.env.JWT_EXPIRES_IN
+    });
+}
+
 
 //SIGNUP
-
-exports.signup = async(req,res,next)=>{
+exports.signup = catchAsync(async(req,res,next)=>{
     //const newUser = await User.create(req.body);
     const newUser = await User.create({
         name: req.body.name,
@@ -13,9 +21,7 @@ exports.signup = async(req,res,next)=>{
         passwordConfirm: req.body.passwordConfirm
     })
 
-    const token = jwt.sign({id: newUser._id},process.env.JWT_SECRET,{
-        expiresIn:process.env.JWT_EXPIERS_IN
-    });
+    const token = signToken(newUser._id);
 
     res.status(201).json({
         status: "Success",
@@ -24,21 +30,26 @@ exports.signup = async(req,res,next)=>{
             user: newUser,
         },
     });
-};
+});
 
 //mora catch async error
-exports.login=async(req,res,next)=>{
+exports.login=catchAsync(async(req,res,next)=>{
     const {email,password} = req.body;
-    console.log("aaaa");
+    //console.log("aaaa");
     if(!email || !password){
-        //return next(new AppError("provide email and pass"))
+        return next(new AppError("Morate uneti oba parametra"));
     }
 
     const user = await User.findOne({email}).select("+password");
     console.log(user);
-    const token ="";
+
+    if(!user || !(await user.correctPassword(password, user.password))){
+        return next(new AppError("Neispravni parametri",401));
+    }
+
+    const token =signToken(user.id);
     res.status(200).json({
         status: "success",
         token,
     })
-}
+});
