@@ -1,8 +1,11 @@
+const crypto = require("crypto");
+const {promisify} = require("util");
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const catchAsync = require("../Utils/catchAsync");
 const AppError = require("../Utils/appError");
-const {promisify} = require("util");
+const sendEmail = require ("../Utils/email");
+
 
 //create token
 const signToken = id => {
@@ -99,11 +102,57 @@ exports.forgotPassword = catchAsync(async(req,res,next)=>{
     if(!user){
         return next(new AppError("Nema korisnika sa ovim mejlom",404));
     }
+    //kreiramo random token
     const resetToken = user.createPasswordResetToken();
-    console.log(resetToken)
-    await user.save({validateBeforeSave: false});
+    //console.log(resetToken)
+    //slanje mejla
+    const resetURL=`${req.protocol}://${req.get("host")}/api/v1/users/resetPassword/${resetToken}`;
+    const message = `Zaboravili ste lozinku? Posaljite zahtev sa novom lozinkom na url ${resetURL}.`
+    
+    try{
+        await sendEmail({
+            email: user.email,
+            subject: "Token za promenu lozinke (validan 10min)",
+            message,
+        });
+        res.status(200).json({
+            status: "success",
+            message: "Token poslat na mejl"
+        })
+    }catch(error){
+        user.createPasswordResetToken = undefined;
+        user.passwordResetExpires = undefined;
+        await user.save({validateBeforeSave: false});
+        return next(new AppError("Greska u slanju mejla",500));
+    }
+    
+    
 });
 
 exports.resetPassword = catchAsync(async(req,res,next)=>{
+    //get user on token
+    const hashedToken = crypto.createHash("sha256")
+    .update(req.params.token).digest("hex");
 
+    const user = await User.findOne({
+        passwordResetToken: hashedToken,
+        passwordResetExpires: {$gt: Date.now}
+    })
+    //if token not expired
+    if(!user){
+        return next(new AppError("Ovakav korisnik ne postoji",400));
+    }
+    //update
+    user.password = req.body.password;
+    user.passwordConfirm = req.body.passwordConfirm;
+    user.passwordResetToken = undefined;
+    user.passwordResetExpires = undefined;
+    await user.save();
+    
+    //log user in app
+    const token =signToken(user.id);
+    res.status(200).json({
+        status: "success",
+        token,
+    })
 });
