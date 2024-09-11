@@ -21,15 +21,15 @@ const Discover = () => {
     },
     {
       name: "NFT detalji",
-      link: "nft-detalji"
+      link: "NFT-details"
     },
     {
       name: "Podesavanje naloga",
-      link: "podesavanje-naloga"
+      link: "account"
     },
     {
       name: "Novcanik",
-      link: "novcanik"
+      link: "wallet"
     },
     {
       name: "Blog",
