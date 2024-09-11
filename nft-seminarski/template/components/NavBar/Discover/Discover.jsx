@@ -30,11 +30,8 @@ const Discover = () => {
     {
       name: "Novcanik",
       link: "connectWallet"
-    },
-    {
-      name: "Blog",
-      link: "blog"
     }
+    
 
   ]
 

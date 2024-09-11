@@ -6,26 +6,17 @@ import Style from "./HelpCenter.module.css"
 const HelpCenter = () => {
 
   const helpCenter = [
-    {
-      name: "O nama",
-      link: "o-nama"
-    },
-    {
-      name: "Kontakt",
-      link: "kontakt"
-    },
+    
+    
     {
       name: "Prijavi se",
-      link: "prijavi-se"
+      link: "login"
     },
     {
       name: "Registruj se",
-      link: "registruj-se"
-    },
-    {
-      name: "Pretplata",
-      link: "pretplata"
+      link: "signUp"
     }
+    
   ]
 
   return (
