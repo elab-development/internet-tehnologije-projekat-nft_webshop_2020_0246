@@ -11,6 +11,8 @@ router.post("/login",authControllers.login);
 router.post("/forgetPassword",authControllers.forgotPassword);
 router.patch("/resetPassword/:token",authControllers.resetPassword);
 router.patch("/updateMe",authControllers.protect,userControllers.updateMe);
+router.delete("/deleteMe",authControllers.protect,userControllers.deleteMe);
+
 //ROUTERS USERS
 router
   .route("/")
