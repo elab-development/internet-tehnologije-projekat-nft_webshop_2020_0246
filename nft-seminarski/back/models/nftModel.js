@@ -9,32 +9,32 @@ const nftSchema = new mongoose.Schema(
       required: [true, "A NFT must have a name"],
       unique: true,
       trim: true,
-      maxlength: [40, "nft must have 40 character"],
-      minlength: [10, "nft must have 10 character"],
-      // validate: [validator.isAlpha, "NFT name must only contain Characters"],
+      maxlength: [40, "nft mora da ima max 40 karaktera"],
+      minlength: [10, "nft mora da ima min 10 karaktera"],
+      
     },
     slug: String,
     duration: {
       type: String,
-      required: [true, "must provide duration"],
+      required: [true, "mora da ima tranjanje"],
     },
     maxGroupSize: {
       type: Number,
-      required: [true, "must have a group size"],
+      required: [true, "mora da ima veličinu grupe"],
     },
     difficulty: {
       type: String,
-      required: [true, "must have difficulty"],
+      required: [true, "mora da ima difficulty"],
       enum: {
         values: ["easy", "medium", "difficulty"],
-        message: "Difficulty is either: easy, medium and difficulty",
+        message: "Difficulty mora biti: easy, medium, difficult",
       },
     },
     ratingsAverage: {
       type: Number,
       default: 4.5,
-      min: [1, "must have 1"],
-      max: [5, "must have 5"],
+      min: [1, "min 1"],
+      max: [5, "max 5"],
     },
     ratingsQuantity: {
       type: Number,
@@ -42,22 +42,22 @@ const nftSchema = new mongoose.Schema(
     },
     price: {
       type: Number,
-      required: [true, "A NFT must have price"],
+      required: [true, "NFT mroa da ima cenu"],
     },
     priceDiscount: {
-      //THIS CAN ONLY WORK AT THE TIME OF CREATE not update
+      
       type: Number,
       validate: {
         validator: function (val) {
           return val < this.price; // 200 > 100  20 < 100
         },
-        message: "Discount price ({VALUE}) should be below regular price",
+        message: "Cena na popustu treba da bud ispod originalne",
       },
     },
     summary: {
       type: String,
       trim: true,
-      required: [true, "must provide the summary"],
+      required: [true, "morate staviti summary"],
     },
     description: {
       type: String,
@@ -65,7 +65,7 @@ const nftSchema = new mongoose.Schema(
     },
     imageCover: {
       type: String,
-      required: [true, "must provide the cover image"],
+      required: [true, "morate staviti sliku"],
     },
     images: [String],
 
@@ -85,7 +85,7 @@ nftSchema.virtual("durationWeeks").get(function () {
   return this.duration / 7;
 });
 
-//MONGOOSE MIDDLEWARE
+
 
 //DOCUMNT MIDDLEWARE: runs before .save() or .create()
 nftSchema.pre("save", function (next) {
@@ -94,17 +94,7 @@ nftSchema.pre("save", function (next) {
   next();
 });
 
-// nftSchema.pre("save", function (next) {
-//   console.log("document will save....");
-//   next();
-// });
 
-// nftSchema.post("save", function (doc, next) {
-//   console.log(doc);
-//   next();
-// });
-
-//QYERY MIDDLEWARE
 
 //---------pre
 // nftSchema.pre("find", function (next) {
@@ -114,10 +104,7 @@ nftSchema.pre(/^find/, function (next) {
   next();
 });
 
-// nftSchema.pre("findOne", function (next) {
-//   this.find({ secretNfts: { $ne: true } });
-//   next();
-// });
+
 
 //-----post
 nftSchema.post(/^find/, function (doc, next) {

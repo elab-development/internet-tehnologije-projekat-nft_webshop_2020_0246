@@ -26,13 +26,13 @@ const Profile = () => {
           <div className={Style.profile_menu_one_item}>
             <FaUserAlt/>
             <p>
-              <Link href={{pathname: '/myprofile'}}>My profile</Link>
+              <Link href={{pathname: '/myprofile'}}>Moj profil</Link>
             </p>
           </div>
           <div className={Style.profile_menu_one_item}>
             <FaRegImage/>
             <p>
-              <Link href={{pathname: '/my-items'}}>My items</Link>
+              <Link href={{pathname: '/my-items'}}>Moje stvari</Link>
             </p>
           </div>
           <div className={Style.profile_menu_one_item}>
@@ -48,13 +48,13 @@ const Profile = () => {
           <div className={Style.profile_menu_one_item}>
             <MdHelpCenter/>
             <p>
-              <Link href={{pathname: '/help'}}>Help</Link>
+              <Link href={{pathname: '/help'}}>Pomoc</Link>
             </p>
           </div>
           <div className={Style.profile_menu_one_item}>
             <TbDownload/>
             <p>
-              <Link href={{pathname: '/disconnect'}}>Disconnect</Link>
+              <Link href={{pathname: '/disconnect'}}>Izloguj se</Link>
             </p>
           </div>
         </div>

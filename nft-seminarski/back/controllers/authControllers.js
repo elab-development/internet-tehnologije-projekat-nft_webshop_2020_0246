@@ -13,14 +13,8 @@ const signToken = id => {
         expiresIn:process.env.JWT_EXPIRES_IN
     });
 }
-
-
-
 const createSendToken = (user,statusCode,res)=>{
     const token = signToken(user._id);
-
-
-
     const cookieOptions = {
         expires: new Date(
         Date.now()+process.env.JWT_COOKIE_EXPIRE_IN*24*60*60*1000),
@@ -40,17 +34,9 @@ const createSendToken = (user,statusCode,res)=>{
         }
     })
 }
-
 //SIGNUP
 exports.signup = catchAsync(async(req,res,next)=>{
     const newUser = await User.create(req.body);
-    /*const newUser = await User.create({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        passwordConfirm: req.body.passwordConfirm,
-    })*/
-
     const token = signToken(newUser._id);
 
     res.status(201).json({
@@ -61,7 +47,6 @@ exports.signup = catchAsync(async(req,res,next)=>{
         },
     });
 });
-
 //mora catch async error
 exports.login=catchAsync(async(req,res,next)=>{
     const {email,password} = req.body;
@@ -83,7 +68,6 @@ exports.login=catchAsync(async(req,res,next)=>{
         token,
     })
 });
-
 //protecting data
 exports.protect = catchAsync(async(req,res,next)=>{
     let token;

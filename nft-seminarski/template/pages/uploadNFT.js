@@ -7,28 +7,28 @@ import { NFTMarketplaceContext } from "@/Context/NFTMarketPlaceContext";
 
 
 const uploadNFT = () => {
-  const {uploadToIFPS, createNFT} = useContext(NFTMarketplaceContext);
+  const {uploadToPinata, createNFT} = useContext(NFTMarketplaceContext);
   return (
     <div className={Style.uploadNFT}>
       <div className={Style.uploadNFT_box}>
         <div className={Style.uploadNFT_box_heading}>
-          <h1>Create New NFT</h1>
+          <h1>Kreirajte Novi NFT</h1>
           <p>
-            You can set preferred display name, create your profile URL and
-            manage other personal settings.
+            Mozete postaviti preferirano ime, kreirati URL svog profila i pristupiti ostalim podesavanjima.
+            
           </p>
         </div>
 
         <div className={Style.uploadNFT_box_title}>
-          <h2>Image, Video, Audio, or 3D Model</h2>
+          <h2>Slika, Video, Audio ili 3D model</h2>
           <p>
-            File types supported: JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV, OGG,
+            Tipovi fajla koji su podrzani: JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV, OGG,
             GLB, GLTF. Max size: 100 MB
           </p>
         </div>
 
         <div className={Style.uploadNFT_box_form}>
-          <UploadNFT uploadToIFPS={uploadToIFPS} createNFT={createNFT}/>
+          <UploadNFT uploadToPinata={uploadToPinata} createNFT={createNFT}/>
         </div>
       </div>
     </div>

@@ -17,15 +17,16 @@ const DropZone = ({
   fileSize,
   category,
   properties,
-  uploadToIFPS,
+  uploadToPinata,
   setImage,
 }) => {
   const [fileUrl, setFileUrl] = useState(null);
 
   const onDrop = useCallback(async (acceptedFile) => {
-    const url = await uploadToIFPS(acceptedFile[0]);
+    const url = await uploadToPinata(acceptedFile[0]);
     setFileUrl(url);
     setImage(url);
+    console.log(url);
   });
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -58,7 +59,7 @@ const DropZone = ({
         <aside className={Style.DropZone_box_aside}>
           <div className={Style.DropZone_box_aside_box}>
             <Image
-              src={images.nft_image_1}
+              src={fileUrl}
               alt="nft image"
               width={200}
               height={200}
@@ -67,18 +68,18 @@ const DropZone = ({
             <div className={Style.DropZone_box_aside_box_preview}>
               <div className={Style.DropZone_box_aside_box_preview_one}>
                 <p>
-                  <samp>NFT Name:</samp>
+                  <samp>NFT Naziv:</samp>
                   {name || ""}
                 </p>
                 <p>
-                  <samp>Website:</samp>
+                  <samp>Veb Stranica:</samp>
                   {website || ""}
                 </p>
               </div>
 
               <div className={Style.DropZone_box_aside_box_preview_two}>
                 <p>
-                  <span>Description</span>
+                  <span>Opis</span>
                   {description || ""}
                 </p>
               </div>
@@ -89,7 +90,7 @@ const DropZone = ({
                   {royalties || ""}
                 </p>
                 <p>
-                  <span>FileSize</span>
+                  <span>Velicina Fajla</span>
                   {fileSize || ""}
                 </p>
                 <p>
@@ -97,7 +98,7 @@ const DropZone = ({
                   {properties || ""}
                 </p>
                 <p>
-                  <span>Category</span>
+                  <span>Kategorija</span>
                   {category || ""}
                 </p>
               </div>

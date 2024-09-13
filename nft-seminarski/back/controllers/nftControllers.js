@@ -9,10 +9,6 @@ exports.aliasTopNFTs = (req, res, next) => {
   req.query.fields = "name,price,ratingsAverage,difficulty";
   next();
 };
-
-
-
-
 exports.getAllNfts = catchAsync(async (req, res,next) => {
   
     const features = new APIFeatures(NFT.find(), req.query)
@@ -118,11 +114,6 @@ exports.getNFTsStats = catchAsync(async (req, res,next) => {
       {
         $sort: { avgRating: 1 },
       },
-      // {
-      //   $match: {
-      //     _id: { $ne: "EASY" },
-      //   },
-      // },
     ]);
     res.status(200).json({
       status: "success",

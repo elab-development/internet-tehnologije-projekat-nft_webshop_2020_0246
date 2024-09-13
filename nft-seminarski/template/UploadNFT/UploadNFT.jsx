@@ -13,7 +13,7 @@ import images from "../img";
 import { Button } from "../components/componentindex";
 import { DropZone } from "../UploadNFT/uploadNFTIndex.js";
 
-const UploadNFT = ({uploadToIFPS, createNFT}) => {
+const UploadNFT = ({uploadToPinata, createNFT}) => {
   const [price,setPrice] = useState("")
   const [active, setActive] = useState(0);
   const [name, setName] = useState("");
@@ -57,8 +57,8 @@ const UploadNFT = ({uploadToIFPS, createNFT}) => {
     <div className={Style.upload}>
       <DropZone
         title="JPG, PNG, WEBM , MAX 100MB"
-        heading="Drag & drop file"
-        subHeading="or Browse media on your device"
+        heading="Prevucite i bacite fajl"
+        subHeading="ili pristupite preko svog uredjaja"
         name={name}
         website={website}
         description={description}
@@ -67,22 +67,22 @@ const UploadNFT = ({uploadToIFPS, createNFT}) => {
         category={category}
         properties={properties}
         setImage={setImage}
-        uploadToIFPS={uploadToIFPS}
+        uploadToPinata={uploadToPinata}
       />
 
       <div className={Style.upload_box}>
         <div className={formStyle.Form_box_input}>
-          <label htmlFor="nft">Item Name</label>
+          <label htmlFor="nft">Naziv</label>
           <input
             type="text"
-            placeholder="shoaib bhai"
+            placeholder="naziv nft-a"
             className={formStyle.Form_box_input_userName}
             onChange={(e) => setName(e.target.value)}
           />
         </div>
 
         <div className={formStyle.Form_box_input}>
-          <label htmlFor="website">Website</label>
+          <label htmlFor="website">Veb Stranica</label>
           <div className={formStyle.Form_box_input_box}>
             <div className={formStyle.Form_box_input_box_icon}>
               <MdOutlineHttp />
@@ -90,7 +90,7 @@ const UploadNFT = ({uploadToIFPS, createNFT}) => {
 
             <input
               type="text"
-              placeholder="website"
+              placeholder="veb stranica"
               onChange={(e) => setWebsite(e.target.value)}
             />
           </div>
@@ -103,13 +103,13 @@ const UploadNFT = ({uploadToIFPS, createNFT}) => {
         </div>
 
         <div className={formStyle.Form_box_input}>
-          <label htmlFor="description">Description</label>
+          <label htmlFor="description">Opis</label>
           <textarea
             name=""
             id=""
             cols="30"
             rows="6"
-            placeholder="something about yourself in few words"
+            placeholder="nesto o nft-u u par recenica"
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
           <p>
@@ -119,9 +119,9 @@ const UploadNFT = ({uploadToIFPS, createNFT}) => {
         </div>
 
         <div className={formStyle.Form_box_input}>
-          <label htmlFor="name">Choose collection</label>
+          <label htmlFor="name">Izaberite kolekciju</label>
           <p className={Style.upload_box_input_para}>
-            Choose an exiting collection or create a new one
+            Izaberite postojecu kolekciju ili izaberite novu
           </p>
 
           <div className={Style.upload_box_slider_div}>
@@ -168,7 +168,7 @@ const UploadNFT = ({uploadToIFPS, createNFT}) => {
             </div>
           </div>
           <div className={formStyle.Form_box_input}>
-            <label htmlFor="size">Size</label>
+            <label htmlFor="size">Velicina</label>
             <div className={formStyle.Form_box_input_box}>
               <div className={formStyle.Form_box_input_box_icon}>
                 <MdOutlineAttachFile />
@@ -195,14 +195,14 @@ const UploadNFT = ({uploadToIFPS, createNFT}) => {
           </div>
 
           <div className={formStyle.Form_box_input}>
-            <label htmlFor="Price">Price</label>
+            <label htmlFor="Price">Cena</label>
             <div className={formStyle.Form_box_input_box}>
               <div className={formStyle.Form_box_input_box_icon}>
                 <AiTwotonePropertySafety />
               </div>
               <input
                 type="text"
-                placeholder="Price"
+                placeholder="cena"
                 onChange={(e) => setPrice(e.target.value)}
               />
             </div>
@@ -215,11 +215,22 @@ const UploadNFT = ({uploadToIFPS, createNFT}) => {
         <div className={Style.upload_box_btn}>
           <Button
             btnName="Upload"
-            handleClick={async() => createNFT(name,price,image,description,router,website,royalties,fileSize,category,properties)}
+            handleClick={async() => createNFT(
+              name,
+              price,
+              image,
+              description,
+              router,
+              //website,
+              //royalties,
+              //fileSize,
+              //category,
+              //properties
+            )}
             classStyle={Style.upload_box_btn_style}
           />
           <Button
-            btnName="Preview"
+            btnName="Prikaz"
             handleClick={() => {}}
             classStyle={Style.upload_box_btn_style}
           />
