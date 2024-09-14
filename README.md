@@ -1,1 +1,10 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/1IMeAlJr)
+Kreiramo web 3.0 aplikaciju koja je zapramo platforma gde korisnici (povezani novcanikom) mogu da kupuju, prodaju i kreiraju NFT-e. Osnovne funckionalnosti su povezivanje sa novcanikom, logovanje i kreiranje korisnika, pretraga NFT-a, pregled autora, detaljni pregled NFT-a.
+
+Najbitnija funckionalnost jeste koriscenje SMART CONTRACT-a kako bi se obezbedilo pouzdana i sigurna transakcija NFT-a.
+
+POKRETANJE APLIKACIJE
+
+cd nft-seminarski/template
+npm run dev
+
+Na ovaj nacin se automatski pokrecu i back i front deo.
