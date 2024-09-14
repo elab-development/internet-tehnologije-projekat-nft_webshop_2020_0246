@@ -1,6 +1,4 @@
 import React, {useEffect, useState, useContext} from 'react'
-
-
 import Style from "../styles/searchPage.module.css"
 //import slider KOJI NEMAM
 import { SearchBar } from '@/searchPage/searchPageindex'
@@ -12,17 +10,27 @@ import { NFTMarketplaceContext } from '@/Context/NFTMarketPlaceContext'
 
 const searchPage = () => {
 
-  const {fetchNFTs} = useContext(NFTMarketplaceContext);
+  //const {fetchNFTs} = useContext(NFTMarketplaceContext);
   const[nfts,setNfts] = useState([]);
   const[nftsCopy,setNftsCopy] = useState([]);
 
+  const fetchNFTs = async () => {
+    return [
+      { id: 1, name: 'Amazing NFT 1', image: images.nft_image_1 },
+      { id: 2, name: 'Amazing NFT 2', image: images.nft_image_2 },
+      { id: 3, name: 'Cool NFT 3', image: images.nft_image_3 },
+      { id: 4, name: 'Amazing NFT 4', image: images.nft_image_1 },
+      { id: 5, name: 'Cool NFT 5', image: images.nft_image_2 },
+    ];
+  };
+
 useEffect(()=>{
-  fetchNFTs().then((item)=>{
-    setNfts(item.reverse());
-    setNftsCopy(item);
-    console.log(nfts);
+  fetchNFTs().then((items)=>{
+    setNfts(items);
+    setNftsCopy(items);
+    console.log(items);
   })
-})
+},[]);
 
 const onHandleSearch = (value)=>{
   const filteredNFTs = nfts.filter(({name})=>

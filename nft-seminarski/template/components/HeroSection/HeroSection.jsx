@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from 'next/link';
 
 //INTERNALNI IMPORTI
 import Style from "./HeroSection.module.css";
@@ -16,7 +17,9 @@ const HeroSection = () => {
           Otkrijte najistaknutije NTF-ove u svim životnim temama. Kreativno
           svoje NTF-ove i prodajte ih
           </p>
-          <Button btnName="Započnite pretragu" />
+          <Link href="/searchPage" passHref>
+            <Button btnName="Započnite pretragu" handleClick={()=>{}}/>
+          </Link>
         </div>
         <div className={Style.heroSection_box_right}>
           <Image

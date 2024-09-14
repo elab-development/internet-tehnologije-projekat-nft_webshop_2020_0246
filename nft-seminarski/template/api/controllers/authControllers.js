@@ -13,61 +13,60 @@ const signToken = id => {
         expiresIn:process.env.JWT_EXPIRES_IN
     });
 }
-const createSendToken = (user,statusCode,res)=>{
+const createSendToken = (user, statusCode, res) => {
     const token = signToken(user._id);
     const cookieOptions = {
         expires: new Date(
-        Date.now()+process.env.JWT_COOKIE_EXPIRE_IN*24*60*60*1000),
-        //secure: true,
-        httpOnly:true,
-        
-    }
+            Date.now() + process.env.JWT_COOKIE_EXPIRE_IN * 24 * 60 * 60 * 1000
+        ),
+        httpOnly: true
+    };
 
-    res.cookie("jwt",token,cookieOptions)
-    user.password=undefined;
+    res.cookie("jwt", token, cookieOptions);
+    user.password = undefined;
 
     res.status(statusCode).json({
         status: "success",
         token,
-        data:{
+        data: {
             user,
         }
-    })
-}
-//SIGNUP
-exports.signup = catchAsync(async(req,res,next)=>{
-    const newUser = await User.create(req.body);
-    const token = signToken(newUser._id);
-
-    res.status(201).json({
-        status: "Success",
-        token,
-        data:{
-            user: newUser,
-        },
     });
+};
+
+// SIGNUP
+exports.signup = catchAsync(async (req, res, next) => {
+    const newUser = await User.create(req.body);
+    createSendToken(newUser, 201, res);
 });
-//mora catch async error
-exports.login=catchAsync(async(req,res,next)=>{
-    const {email,password} = req.body;
-    //console.log("aaaa");
-    if(!email || !password){
-        return next(new AppError("Morate uneti oba parametra"));
+
+// LOGIN
+exports.login = catchAsync(async (req, res, next) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return next(new AppError("Please provide email and password!", 400));
     }
 
-    const user = await User.findOne({email}).select("+password");
-    console.log(user);
+    const user = await User.findOne({ email }).select("+password");
 
-    if(!user || !(await user.correctPassword(password, user.password))){
-        return next(new AppError("Neispravni parametri",401));
+    if (!user || !(await user.correctPassword(password, user.password))) {
+        return next(new AppError("Incorrect email or password", 401));
     }
 
-    const token =signToken(user.id);
-    res.status(200).json({
-        status: "success",
-        token,
-    })
+    createSendToken(user, 200, res);
 });
+
+
+exports.logout = (req, res) => {
+    res.cookie('jwt', 'loggedout', {
+        expires: new Date(Date.now() + 10 * 1000),
+        httpOnly: true
+    });
+
+    res.status(200).json({ status: 'success' });
+};
+
 //protecting data
 exports.protect = catchAsync(async(req,res,next)=>{
     let token;

@@ -13,20 +13,16 @@ const userLogin = async (email,password)=>{
     const res = await axios({
       method:"POST",
       url: "api/v1/users/login",
-      //withCredentials:true,
+      withCredentials:true,
       data: {
         email, password,
       }
     });
     if(res.data.status==="success"){
-      //setSuccessMessage("Ulogovali ste se uspesno");
-      //dispatchEvent(selectCurrentState(res.data.data.user));
-      //setLoading(false);
-      //setOpenNotice(true);
-      //window.setTimeout(()=>{
-      //  location.reload(true);
-      //},1500)
+      
       console.log("Ulogovali ste se uspesno");
+      const cookies = document.cookie;  
+      console.log("Cookies: ", cookies);
     }else{
       console.log("Neuspesno logovanje")
     }
