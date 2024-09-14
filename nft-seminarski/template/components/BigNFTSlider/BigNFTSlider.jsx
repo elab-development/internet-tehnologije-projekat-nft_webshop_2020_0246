@@ -64,7 +64,7 @@ const BigNFTSilder = () => {
     {
       title: "Home NFT",
       id: 4,
-      name: "Raayan Hussain",
+      name: "Rosa Vanjic",
       collection: "GYm",
       price: "4664 ETH",
       like: 243,

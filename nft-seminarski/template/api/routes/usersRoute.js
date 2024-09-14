@@ -19,13 +19,13 @@ router.delete("/deleteMe",authControllers.protect,userControllers.deleteMe);
 //ROUTERS USERS
 router
   .route("/")
-  .get(userControllers.getAllUsers)
-  .post(userControllers.createUser);
+  .get(authControllers.protect,userControllers.getAllUsers)
+  //.post(userControllers.createUser);
 
-router
-  .route("/:id")
-  .get(userControllers.getSingleUser)
-  .patch(userControllers.updateUser)
-  .delete(userControllers.deleteUser);
+//router
+  //.route("/:id")
+  //.get(userControllers.getSingleUser)
+  //.patch(userControllers.updateUser)
+  //.delete(userControllers.deleteUser);
 
 module.exports = router;

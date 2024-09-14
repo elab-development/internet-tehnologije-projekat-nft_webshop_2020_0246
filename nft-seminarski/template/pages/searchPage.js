@@ -17,9 +17,9 @@ const searchPage = () => {
   const fetchNFTs = async () => {
     return [
       { id: 1, name: 'Amazing NFT 1', image: images.nft_image_1 },
-      { id: 2, name: 'Amazing NFT 2', image: images.nft_image_2 },
+      { id: 2, name: 'Anakonda NFT 2', image: images.nft_image_2 },
       { id: 3, name: 'Cool NFT 3', image: images.nft_image_3 },
-      { id: 4, name: 'Amazing NFT 4', image: images.nft_image_1 },
+      { id: 4, name: 'Zebra NFT 4', image: images.nft_image_1 },
       { id: 5, name: 'Cool NFT 5', image: images.nft_image_2 },
     ];
   };

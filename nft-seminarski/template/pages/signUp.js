@@ -18,7 +18,7 @@ const userSignup = async (name,email,password,passwordConfirm)=>{
         name,email, password,passwordConfirm,
       }
     });
-    if(res.data.status==="Success"){
+    if(res.data.status==="success"){
       //setSuccessMessage("Ulogovali ste se uspesno");
       //dispatchEvent(selectCurrentState(res.data.data.user));
       //setLoading(false);
