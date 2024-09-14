@@ -27,6 +27,8 @@ const userLogin = async (email,password)=>{
       //  location.reload(true);
       //},1500)
       console.log("Ulogovali ste se uspesno");
+    }else{
+      console.log("Neuspesno logovanje")
     }
   } catch(err){
       console.log(err);
