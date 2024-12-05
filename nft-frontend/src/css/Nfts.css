@@ -1,0 +1,72 @@
+.nfts-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 10px;
+    background-color: transparent;
+    background-repeat: repeat;
+    height: 900px;
+    background-size: cover;
+  }
+
+  .nfts-page h2 {
+    margin: 0;
+    padding-top: 60px;
+    color: #E9E9E9;
+    font-weight: bold;
+    background-color: #706F8E;
+    opacity: 80%;
+    padding: 20px;
+    width: 600px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out; 
+}
+
+  .nfts-page h2:hover {
+      transform: scale(1.1); 
+  }
+
+  .nfts-page {
+    background-image: url('https://assets-global.website-files.com/5fc9d3d58a00611de699385c/6303223837665d91b19654bf_nft-img.jpg');
+    background-repeat: repeat;
+    height: 1000px;
+    background-size: cover;
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column ;
+    align-items: center;
+    
+  }
+   
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .pagination p {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #706F8E; 
+  }
+
+  .pagination button {
+    margin: 0 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ADA9BA; 
+    color: white; 
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pagination button.active {
+    background-color: #706F8E; 
+  }
+
+  .pagination button:hover {
+    background-color: #706F8E; 
+  }
